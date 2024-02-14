@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping</title>
+    <!-- style -->
+    <link rel="stylesheet" href="../style/style.css" />
+    <!-- alpine js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- feather icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- animated style -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">Coffe<span>House</span></a>
+      <div class="navbar-nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#explore">Explore</a>
+      </div>
+      <div class="navbar-extra" x-data>
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-button">
+          <i data-feather="shopping-cart"></i>
+          <span
+            class="quantity-badge"
+            x-text="$store.cart.quantity"
+            x-show="$store.cart.quantity"
+          ></span
+        ></a>
+        <a href="#" id="humburger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- search from strat -->
+      <div class="search-from">
+        <input
+          type="search"
+          name="search"
+          id="search-box"
+          placeholder="search here..."
+        />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+      <!-- search from end -->
+
+      <!-- shoppin-cart strat -->
+      <div class="shopping-cart" x-data>
+        <template x-for="(item, index) in $store.cart.items" x-keys="index">
+          <div class="cart-item">
+            <img :src="`/img/products/${item.img}`" :alt="item.name" />
+            <div class="item-detail">
+              <h3 x-text="item.name"></h3>
+              <div class="item-price">
+                <span x-text="rupiah(item.price)"></span> &times;
+                <button id="remove" @click="$store.cart.remove(item.id)">
+                  &minus;
+                </button>
+                <span x-text="item.quantity"></span>
+                <button id="add" @click="$store.cart.add(item)">&plus;</button>
+                &equals;
+                <span x-text=" rupiah(item.total)"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+        <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem">
+          Cart is Empty | Max 5 Items
+        </h4>
+        <h4 x-show="$store.cart.items.length">
+          Total : <span x-text="rupiah($store.cart.total)"></span>
+        </h4>
+        <div class="form-container" x-show="$store.cart.items.length">
+          <form action="" id="checkout-from">
+            <input
+              type="hidden"
+              name="items"
+              x-model="JSON.stringify($store.cart.items)"
+            />
+            <input type="hidden" name="total" x-model="$store.cart.total" />
+            <h5>Customer Detail</h5>
+            <label for="Name">
+              <span>Name</span>
+              <input type="text" name="name" id="name" />
+            </label>
+            <label for="E-mail">
+              <span>E-mail</span>
+              <input type="email" name="email" id="email" />
+            </label>
+            <label for="Phone">
+              <span>Phone</span>
+              <input type="number" name="phone" id="Phone" autocomplete="off" />
+            </label>
+            <button
+              type="submit"
+              id="checkout-button"
+              class="checkout-button disabled"
+              value="checkout"
+            >
+              Checkout
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- shoppin-cart end -->
+    </nav>
+    <!-- product 1 -->
+    <section class="products" id="products" x-data="products">
+      <h1 class="animate__animated animate__fadeInUp animate__delay-1s">
+        Setelah mengenal semua jenis <span>KOPI</span> yang ada di Dunia
+      </h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">
+        Ada berbagai Bubuk kopi yang terbuat dari 4 jenis biji kopi tersebut,
+        jika anda ingin membelinya silahkan lihat menu kami dibaawah dan juga
+        dapat melakukan pembelian😊
+      </p>
+      <h1 class="animate__animated animate__fadeInUp animate__delay-1s">
+        Bubuk kopi yang terbuat dari biji kopi Robusta | Arabica | Liberica |
+        Excelsa
+      </h1>
+      <div class="row animate__animated animate__fadeInUp animate__delay-1s">
+        <template x-for="(item, index) in items" x-key="index">
+          <div class="product-card">
+            <div class="product-img">
+              <img :src="`/img/products/${item.img}`" :alt="item.name" />
+            </div>
+
+            <div class="product-content">
+              <h3 x-text="item.name"></h3>
+              <div class="product-price">
+                <span x-text="rupiah(item.price)"></span>
+              </div>
+              <div class="product-icon">
+                <a href="#" @click.prevent="$store.cart.add(item)">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <use href="../img/svg/feather-sprite.svg#shopping-cart" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+    <!-- footer -->
+    <footer class="animate__animated animate__fadeInLeft animate__delay-2s">
+      <div class="sosial">
+        <a href=""><i data-feather="instagram"></i></a>
+        <a href=""><i data-feather="facebook"></i></a>
+        <a href=""><i data-feather="twitter"></i></a>
+      </div>
+      <div class="link">
+        <a href="#home">Home</a>
+        <a href="#explore">Explore</a>
+        <a href="./shop/shop.html">Shopping</a>
+        <a href="#contact">Kontak</a>
+      </div>
+      <div class="credit">
+        <p>created by <a href="">AzhySholihin</a> . | &copy;2024</p>
+      </div>
+    </footer>
+  </body>
+  <script src="../app.js/shop.js"></script>
+  <!-- <script src="../app.js/shop2.js"></script> -->
+  <script>
+    feather.replace();
+  </script>
+</html>
