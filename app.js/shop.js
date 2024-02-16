@@ -1,4 +1,3 @@
-
 // toggle class untuk navbar
 const navbarNav = document.querySelector('.navbar-nav');
 document.querySelector('#humburger-menu').onclick = () => {
@@ -20,7 +19,7 @@ document.querySelector('#shopping-cart-button').onclick = (e) => {
     e.preventDefault();
 };
 
-// penaganan klik diluar Elemen
+// penanganan klik diluar Elemen
 document.addEventListener('click', function(e) {
     if (!document.querySelector('#humburger-menu').contains(e.target) && !navbarNav.contains(e.target)) {
         navbarNav.classList.remove('active');
@@ -87,7 +86,7 @@ document.addEventListener('alpine:init', ( ) => {
       },
       remove(id) {
         // ambil item yang mau diremove
-        const cartItem = this.items.find((item) => item.id );
+        const cartItem = this.items.find((item) => item.id === id );
         // jika item lebih dari 1  
         if(cartItem.quantity > 1) {
           // telusuri 1 1
@@ -120,17 +119,15 @@ document.addEventListener('alpine:init', ( ) => {
   
   const form = document.querySelector('#checkout-from');
   
-  form.addEventListener( 'keyup', function(){
-    for ( let i = 0; i < form.elements.length; i++) {
-      if(form.elements[i].value.length !== 0) {
-        checkoutButton.classList.remove('disabled');
-        checkoutButton.classList.add('disabled');
-      } else {
-        return false;
+  form.addEventListener('keyup', function() {
+    let isFormFilled = true;
+    for (let i = 0; i < form.elements.length; i++) {
+      if (form.elements[i].value.length === 0) {
+        isFormFilled = false;
+        break; // Jika ada satu elemen yang kosong, keluar dari loop
       }
     }
-    checkoutButton.disabled = false;
-    checkoutButton.classList.remove('disabled');
+    checkoutButton.disabled = !isFormFilled; // Mengaktifkan/tidak mengaktifkan tombol checkout berdasarkan isFormFilled
   });
   
   
@@ -165,5 +162,3 @@ document.addEventListener('alpine:init', ( ) => {
           minimumFractionDigits: 0,
       }).format(number);
   };
-  
-  
