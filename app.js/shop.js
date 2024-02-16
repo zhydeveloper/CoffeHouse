@@ -119,15 +119,17 @@ document.addEventListener('alpine:init', ( ) => {
   
   const form = document.querySelector('#checkout-from');
   
-  form.addEventListener('keyup', function() {
-    let isFormFilled = true;
-    for (let i = 0; i < form.elements.length; i++) {
-      if (form.elements[i].value.length === 0) {
-        isFormFilled = false;
-        break; // Jika ada satu elemen yang kosong, keluar dari loop
+  form.addEventListener( 'keyup', function(){
+    for ( let i = 0; i < form.elements.length; i++) {
+      if(form.elements[i].value.length !== 0) {
+        checkoutButton.classList.remove('disabled');
+        checkoutButton.classList.add('disabled');
+      } else {
+        return false;
       }
     }
-    checkoutButton.disabled = !isFormFilled; // Mengaktifkan/tidak mengaktifkan tombol checkout berdasarkan isFormFilled
+    checkoutButton.disabled = false;
+    checkoutButton.classList.remove('disabled');
   });
   
   
@@ -162,3 +164,5 @@ document.addEventListener('alpine:init', ( ) => {
           minimumFractionDigits: 0,
       }).format(number);
   };
+  
+  

@@ -1143,10 +1143,15 @@ html {
 
 .products .product-img {
   padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:  1rem 0;
 }
 
 .products .product-img img {
-  height: 25rem;
+  max-height: 25rem;
+  width: auto;
 }
 
 .products .product-content h3 {
