@@ -140,7 +140,7 @@ document.addEventListener('alpine:init', ( ) => {
     const data = new URLSearchParams(formData);
     const objData = Object.fromEntries(data);
     const message = formatMessage(objData);
-    window.open('http://wa.me/621264090357?text=' + encodeURIComponent(message));
+    window.open('http://wa.me/628386802840?text=' + encodeURIComponent(message));
    });
   
   //  format pesan wa 
