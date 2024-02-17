@@ -1144,6 +1144,7 @@ html {
 .products .product-img {
   padding: 1rem 0;
   display: flex;
+  border: solid 1px black;
   justify-content: center;
   align-items: center;
   padding:  1rem 0;
