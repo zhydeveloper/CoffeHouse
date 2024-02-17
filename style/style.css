@@ -50,12 +50,12 @@ html {
     font-style: italic
 }
 
-.navbar .navbar-nav a {
+.navbar .navbar-nav a,
+.navbar .navbar-nav input {
     color: white;
     display: inline-block;
     font-size: 1.3rem;
     margin: 0 1rem;
-
 }
 
 .navbar .navbar-nav a:hover {
@@ -264,6 +264,8 @@ html {
   border-top: 1px dashed black;
   margin-top: 1rem;
   padding: 1rem;
+  overflow-y: auto;
+  height: 70vh;
 }
 
  #checkout-form {
