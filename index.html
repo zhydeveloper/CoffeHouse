@@ -415,23 +415,42 @@
         Berikan komentar anda tentang website kami😊
       </p>
       <div class="row animate__animated animate__fadeInUp animate__delay-1s">
-        <form action="">
+        <form id="contactForm">
           <div class="input-group">
             <i data-feather="user"></i>
-            <input type="text" placeholder=" Masukan Nama" />
+            <input
+              type="text"
+              id="nama"
+              placeholder=" Masukan Nama"
+              name="nama"
+              required
+            />
           </div>
           <div class="input-group">
             <i data-feather="mail"></i>
-            <input type="email" placeholder=" Masukan E-mail" />
+            <input
+              type="email"
+              id="email"
+              placeholder=" Masukan E-mail"
+              name="email"
+              required
+            />
           </div>
           <div class="input-group">
             <i data-feather="phone"></i>
-            <input type="number" placeholder=" Masukan No-HP" />
+            <input
+              type="number"
+              placeholder=" Masukan No-HP"
+              name="no_hp"
+              id="no"
+              required
+            />
           </div>
-          <button type="submit" class="btn">KIRIM PESAN</button>
+          <button onclick="sendwhatsapp();" class="btn">Send</button>
         </form>
       </div>
     </section>
+
     <!-- contact end -->
 
     <!-- fotter start -->

@@ -102,3 +102,24 @@ window.onclick = (e) => {
         itemDetailModal4.style.display = 'none';
     }
 };
+
+
+  function sendwhatsapp() {
+    var phonenumber = "+628386802840"; // Nomor WhatsApp tujuan
+
+    var name = document.querySelector("#nama").value; // Mengambil nilai input nama
+    var email = document.querySelector("#email").value; // Mengambil nilai input email
+    var no_hp = document.querySelector("#no").value; // Mengambil nilai input nomor HP
+
+    // Membuat pesan yang akan dikirim ke WhatsApp
+    var message = "Nama: " + name + "\n" +
+                  "Email: " + email + "\n" +
+                  "No HP: " + no_hp;
+
+    // Membuat URL untuk membuka WhatsApp dengan pesan yang sudah dibuat
+    var url = "https://api.whatsapp.com/send?phone=" + phonenumber + "&text=" + encodeURIComponent(message);
+
+    // Membuka tautan WhatsApp di jendela baru
+    window.open(url, "_blank");
+  };
+
